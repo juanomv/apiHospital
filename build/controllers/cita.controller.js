@@ -1,10 +1,11 @@
 "use strict";
 
-var _app = _interopRequireDefault(require("./app"));
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.crearCita = crearCita;
 
-require("@babel/polyfill");
-
-var _configdb = _interopRequireDefault(require("./database/configdb"));
+var _Cita = _interopRequireDefault(require("../models/Cita"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -12,52 +13,47 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var PORT = process.env.PORT || 3000;
-
-function main() {
-  return _main.apply(this, arguments);
+function crearCita(_x, _x2) {
+  return _crearCita.apply(this, arguments);
 }
 
-function _main() {
-  _main = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+function _crearCita() {
+  _crearCita = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
+    var _cita;
+
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return _app["default"].listen(PORT, function () {
-              console.log('conectado en el puerto', PORT);
-            });
+            return _Cita["default"].create(req.body);
 
           case 3:
-            _context.next = 5;
-            return _configdb["default"].authenticate();
-
-          case 5:
-            _context.next = 7;
-            return _configdb["default"].sync({
-              force: true,
-              alter: true
+            _cita = _context.sent;
+            res.status(200).json({
+              ok: true,
+              mss: "cita creada",
+              cita: _cita
             });
-
-          case 7:
-            _context.next = 12;
+            _context.next = 10;
             break;
 
-          case 9:
-            _context.prev = 9;
+          case 7:
+            _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            console.log('error :', _context.t0);
+            res.status(400).json({
+              ok: false,
+              mss: "error al crear cita",
+              cita: cita
+            });
 
-          case 12:
+          case 10:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 9]]);
+    }, _callee, null, [[0, 7]]);
   }));
-  return _main.apply(this, arguments);
+  return _crearCita.apply(this, arguments);
 }
-
-main();

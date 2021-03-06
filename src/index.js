@@ -1,4 +1,5 @@
 import app from './app'
+import '@babel/polyfill'
 import sequelize from "./database/configdb"
 const PORT = process.env.PORT || 3000;
 async function main(){
