@@ -1,9 +1,9 @@
 import { DataTypes } from "sequelize";
 
 import sequelize from "../database/configdb";
-
-const especialista = sequelize.define(
-  "Medico",
+import Cita from "../models/Cita";
+const Especialista = sequelize.define(
+  "Especialista",
   {
     numeroColegiado: {
       type: DataTypes.CHAR(8),
@@ -45,7 +45,7 @@ const especialista = sequelize.define(
         msg: "numero invalido debe contener 10 digitos",
       },
     },
-    especializacioin:{
+    especialidad:{
         type:DataTypes.STRING,
         allowNull:false,
         validate:{
@@ -60,5 +60,6 @@ const especialista = sequelize.define(
     freezeTableName: true,
   }
 );
-
-export default especialista;
+Especialista.hasMany(Cita);
+Cita.belongsTo(Especialista);
+export default Especialista;
