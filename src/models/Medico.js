@@ -1,8 +1,9 @@
 import { DataTypes } from "sequelize";
-
 import sequelize from "../database/configdb";
 
-const medico = sequelize.define(
+import Cita from "./Cita"
+
+const Medico = sequelize.define(
   "Medico",
   {
     numeroColegiado: {
@@ -51,5 +52,7 @@ const medico = sequelize.define(
     freezeTableName: true,
   }
 );
+ Medico.hasMany(Cita);
+ Cita.belongsTo(Medico)
 
-export default medico;
+export default Medico;
