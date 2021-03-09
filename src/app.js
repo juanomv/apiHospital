@@ -5,6 +5,7 @@ import morgan from 'morgan';
 //impartar rutas 
 import pacienteRouter from  './routers/pacienteRouter'
 import citaRouter from './routers/citaRouter'
+import medicoRouter from './routers/medicoRouter';
 // importar configuracion db
 
 // inicializando
@@ -21,6 +22,7 @@ app.use(json());
 // rutas
 app.use('/api/paciente',pacienteRouter)
 app.use('/api/cita',citaRouter)
+app.use('/api/medico',medicoRouter);
 
 export default app;
 
