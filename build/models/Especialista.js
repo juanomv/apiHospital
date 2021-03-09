@@ -9,9 +9,11 @@ var _sequelize = require("sequelize");
 
 var _configdb = _interopRequireDefault(require("../database/configdb"));
 
+var _Cita = _interopRequireDefault(require("../models/Cita"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var especialista = _configdb["default"].define("Medico", {
+var Especialista = _configdb["default"].define("Especialista", {
   numeroColegiado: {
     type: _sequelize.DataTypes.CHAR(8),
     primaryKey: true,
@@ -52,7 +54,7 @@ var especialista = _configdb["default"].define("Medico", {
       msg: "numero invalido debe contener 10 digitos"
     }
   },
-  especializacioin: {
+  especialidad: {
     type: _sequelize.DataTypes.STRING,
     allowNull: false,
     validate: {
@@ -66,5 +68,9 @@ var especialista = _configdb["default"].define("Medico", {
   freezeTableName: true
 });
 
-var _default = especialista;
+Especialista.hasMany(_Cita["default"]);
+
+_Cita["default"].belongsTo(Especialista);
+
+var _default = Especialista;
 exports["default"] = _default;
