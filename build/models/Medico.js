@@ -9,9 +9,11 @@ var _sequelize = require("sequelize");
 
 var _configdb = _interopRequireDefault(require("../database/configdb"));
 
+var _Cita = _interopRequireDefault(require("./Cita"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var medico = _configdb["default"].define("Medico", {
+var Medico = _configdb["default"].define("Medico", {
   numeroColegiado: {
     type: _sequelize.DataTypes.CHAR(8),
     primaryKey: true,
@@ -57,5 +59,9 @@ var medico = _configdb["default"].define("Medico", {
   freezeTableName: true
 });
 
-var _default = medico;
+Medico.hasMany(_Cita["default"]);
+
+_Cita["default"].belongsTo(Medico);
+
+var _default = Medico;
 exports["default"] = _default;

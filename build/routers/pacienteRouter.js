@@ -12,7 +12,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var router = (0, _express.Router)();
 router.post('/ingresarpaciente', pacienteCtrl.IngresarPaciente);
-router.get('/pacientes', pacienteCtrl.getPacientes);
-router.get('/paciente/:id', pacienteCtrl.getPaciente);
-router.put('paciente/:id', pacienteCtrl.putPaciente);
+router.get('/', pacienteCtrl.getPacientes);
+router.get('/:id', pacienteCtrl.getPaciente);
+router.put('/:id', pacienteCtrl.putPaciente);
 module.exports = router;

@@ -22,7 +22,7 @@ function IngresarPaciente(_x, _x2) {
 
 function _IngresarPaciente() {
   _IngresarPaciente = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
-    var _req$body, nss, nombre, apellidos, telefono, paciente;
+    var _req$body, nss, nombre, apellidos, telefono, _paciente;
 
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -39,11 +39,11 @@ function _IngresarPaciente() {
             });
 
           case 4:
-            paciente = _context.sent;
+            _paciente = _context.sent;
             res.status(200).json({
               ok: true,
               message: "paciente ingresado",
-              paciente: paciente
+              paciente: _paciente
             });
             _context.next = 11;
             break;
@@ -75,35 +75,40 @@ function getPaciente(_x3, _x4) {
 
 function _getPaciente() {
   _getPaciente = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
-    var pacientes;
+    var id, pacientes;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
-            return _Paciente["default"].findAll();
+            id = req.params.id;
+            _context2.prev = 1;
+            _context2.next = 4;
+            return _Paciente["default"].findOne({
+              where: {
+                nss: id
+              }
+            });
 
-          case 3:
+          case 4:
             pacientes = _context2.sent;
-            res.status(200).json(pacientes);
-            _context2.next = 10;
+            res.status(200).json(paciente);
+            _context2.next = 11;
             break;
 
-          case 7:
-            _context2.prev = 7;
-            _context2.t0 = _context2["catch"](0);
+          case 8:
+            _context2.prev = 8;
+            _context2.t0 = _context2["catch"](1);
             res.status(400).json({
               ok: false,
               message: "fallo la peticion"
             });
 
-          case 10:
+          case 11:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 7]]);
+    }, _callee2, null, [[1, 8]]);
   }));
   return _getPaciente.apply(this, arguments);
 }
@@ -116,18 +121,35 @@ function getPacientes(_x5, _x6) {
 
 function _getPacientes() {
   _getPacientes = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res) {
+    var pacientes;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            res.json('pacientes');
+            _context3.prev = 0;
+            _context3.next = 3;
+            return _Paciente["default"].findAll();
 
-          case 1:
+          case 3:
+            pacientes = _context3.sent;
+            res.status(200).json(pacientes);
+            _context3.next = 10;
+            break;
+
+          case 7:
+            _context3.prev = 7;
+            _context3.t0 = _context3["catch"](0);
+            res.status(400).json({
+              ok: false,
+              message: "fallo la peticion"
+            });
+
+          case 10:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3);
+    }, _callee3, null, [[0, 7]]);
   }));
   return _getPacientes.apply(this, arguments);
 }
@@ -140,18 +162,47 @@ function putPaciente(_x7, _x8) {
 
 function _putPaciente() {
   _putPaciente = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(req, res) {
+    var id, _req$body2, nss, nombre, apellidos, telefono, pacientes;
+
     return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            res.json('update pasiente');
+            id = req.params.id;
+            _req$body2 = req.body, nss = _req$body2.nss, nombre = _req$body2.nombre, apellidos = _req$body2.apellidos, telefono = _req$body2.telefono;
+            _context4.prev = 2;
+            _context4.next = 5;
+            return _Paciente["default"].update({
+              nss: nss,
+              nombre: nombre,
+              apellidos: apellidos,
+              telefono: telefono
+            }, {
+              where: {
+                nss: id
+              }
+            });
 
-          case 1:
+          case 5:
+            pacientes = _context4.sent;
+            res.status(200).json(pacientes);
+            _context4.next = 12;
+            break;
+
+          case 9:
+            _context4.prev = 9;
+            _context4.t0 = _context4["catch"](2);
+            res.status(400).json({
+              ok: false,
+              message: "fallo la peticion"
+            });
+
+          case 12:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4);
+    }, _callee4, null, [[2, 9]]);
   }));
   return _putPaciente.apply(this, arguments);
 }
