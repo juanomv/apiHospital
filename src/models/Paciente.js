@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes ,Model} from "sequelize";
 import sequelize from "../database/configdb";
 import Cita from '../models/Cita'
-
+import Diagnostico from '../models/Diagnostico'
 const Paciente = sequelize.define(
   "Paciente",
   {
@@ -58,4 +58,7 @@ const Paciente = sequelize.define(
 
 Paciente.hasMany(Cita,{foreignKey: 'personaNSS',sourceKey:'nss'})
 Cita.belongsTo(Paciente,{foreignKey: 'personaNSS',sourceKey:'nss'})
+
+Paciente.hasMany(Diagnostico);
+Diagnostico.belongsTo(Paciente)
 export default Paciente;

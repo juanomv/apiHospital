@@ -3,7 +3,7 @@ import Medico from "../models/Medico";
 export async function crearMedico(req, res) {
   const { numeroColegiado, nombre, apellidos, telefono } = req.body;
   try {
-    const medico = Medico.create({
+    const medico = await Medico.create({
       numeroColegiado,
       nombre,
       apellidos,

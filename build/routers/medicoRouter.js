@@ -18,7 +18,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var router = (0, _express.Router)();
 router.get('/', medicoController.getMedicos);
 router.get('/:id', medicoController.getMedico);
-router.post('/'), medicoController.crearMedico;
+router.post('/', medicoController.crearMedico);
 router.put('/:id', medicoController.updateMedico);
 router["delete"]('/:id', medicoController.deleteMedico);
 var _default = router;

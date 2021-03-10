@@ -4,13 +4,13 @@ import sumarDias from '../libs/generatefecha';
 export async function crearCitaMedico(req,res){
     const {personaNSS }= req.body;
     try {
-        const medico = await Medico.findAndCountAll();
-        const numero = Math.floor( Math.random()*medico.count);
-        const map =medico.map(()=>medico.rows.numeroColegiado);
+       // const medico = await Medico.findAndCountAll();
+        //const numero = Math.floor( Math.random()*medico.count);
+        //const map =medico.map(()=>medico.rows.numeroColegiado);
         const cita =await Cita.create({
             personaNSS,
-            fechahora: sumarDias(),
-            MedicoNumeroColegiado : map[numero]
+            fechahora:  Date() ,
+            MedicoNumeroColegiado :"18255788"
         })
         res.status(200).json({
             ok:true,

@@ -11,18 +11,22 @@ var _configdb = _interopRequireDefault(require("../database/configdb"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var Cita = _configdb["default"].define("Cita", {
+var Diagnostico = _configdb["default"].define('Ficha_Diagnostico', {
   codigo: {
-    type: _sequelize.DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
+    type: _sequelize.DataTypes.UUID,
+    primaryKey: true
   },
-  fechaHora: {
-    type: _sequelize.DataTypes.DATE
+  diagnostico: {
+    type: _sequelize.DataTypes.TEXT,
+    allowNull: false
+  },
+  tratamiento: {
+    type: _sequelize.DataTypes.TEXT,
+    allowNull: false
   }
 }, {
-  timestamps: false
+  freezeTableName: true
 });
 
-var _default = Cita;
+var _default = Diagnostico;
 exports["default"] = _default;

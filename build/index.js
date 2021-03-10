@@ -35,27 +35,20 @@ function _main() {
             return _configdb["default"].authenticate();
 
           case 5:
-            _context.next = 7;
-            return _configdb["default"].sync({
-              force: true,
-              alter: true
-            });
-
-          case 7:
-            _context.next = 12;
+            _context.next = 10;
             break;
 
-          case 9:
-            _context.prev = 9;
+          case 7:
+            _context.prev = 7;
             _context.t0 = _context["catch"](0);
             console.log('error :', _context.t0);
 
-          case 12:
+          case 10:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 9]]);
+    }, _callee, null, [[0, 7]]);
   }));
   return _main.apply(this, arguments);
 }

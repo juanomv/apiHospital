@@ -8,7 +8,7 @@ async function main(){
             console.log('conectado en el puerto',PORT);
         });
         await sequelize.authenticate();
-        await sequelize.sync({force:true,alter:true}) ;
+       //await sequelize.sync({force:true,alter:true}) ;
     } catch (error) {
         console.log('error :',error)
     }

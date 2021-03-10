@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import sequelize from "../database/configdb";
 
 import Cita from "./Cita"
-
+import Diagnostico from '../models/Diagnostico'
 const Medico = sequelize.define(
   "Medico",
   {
@@ -55,4 +55,7 @@ const Medico = sequelize.define(
  Medico.hasMany(Cita);
  Cita.belongsTo(Medico)
 
+ Medico.hasMany(Diagnostico);
+ Diagnostico.belongsTo(Medico);
+ 
 export default Medico;

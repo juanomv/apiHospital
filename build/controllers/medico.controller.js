@@ -30,31 +30,38 @@ function _crearMedico() {
         switch (_context.prev = _context.next) {
           case 0:
             _req$body = req.body, numeroColegiado = _req$body.numeroColegiado, nombre = _req$body.nombre, apellidos = _req$body.apellidos, telefono = _req$body.telefono;
+            _context.prev = 1;
+            _context.next = 4;
+            return _Medico["default"].create({
+              numeroColegiado: numeroColegiado,
+              nombre: nombre,
+              apellidos: apellidos,
+              telefono: telefono
+            });
 
-            try {
-              medico = _Medico["default"].create({
-                numeroColegiado: numeroColegiado,
-                nombre: nombre,
-                apellidos: apellidos,
-                telefono: telefono
-              });
-              res.status(200).json({
-                ok: true,
-                medico: medico
-              });
-            } catch (error) {
-              res.status(400).json({
-                ok: false,
-                error: error
-              });
-            }
+          case 4:
+            medico = _context.sent;
+            res.status(200).json({
+              ok: true,
+              medico: medico
+            });
+            _context.next = 11;
+            break;
 
-          case 2:
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](1);
+            res.status(400).json({
+              ok: false,
+              error: _context.t0
+            });
+
+          case 11:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee);
+    }, _callee, null, [[1, 8]]);
   }));
   return _crearMedico.apply(this, arguments);
 }

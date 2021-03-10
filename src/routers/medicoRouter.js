@@ -4,7 +4,7 @@ const router = Router();
 
 router.get('/',medicoController.getMedicos);
 router.get('/:id',medicoController.getMedico);
-router.post('/'),medicoController.crearMedico;
+router.post('/',medicoController.crearMedico);
 router.put('/:id',medicoController.updateMedico);
 router.delete('/:id',medicoController.deleteMedico);
 

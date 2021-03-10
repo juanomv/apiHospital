@@ -11,6 +11,8 @@ var _configdb = _interopRequireDefault(require("../database/configdb"));
 
 var _Cita = _interopRequireDefault(require("./Cita"));
 
+var _Diagnostico = _interopRequireDefault(require("../models/Diagnostico"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var Medico = _configdb["default"].define("Medico", {
@@ -62,6 +64,10 @@ var Medico = _configdb["default"].define("Medico", {
 Medico.hasMany(_Cita["default"]);
 
 _Cita["default"].belongsTo(Medico);
+
+Medico.hasMany(_Diagnostico["default"]);
+
+_Diagnostico["default"].belongsTo(Medico);
 
 var _default = Medico;
 exports["default"] = _default;
